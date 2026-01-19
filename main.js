@@ -20,3 +20,7 @@ const firebaseConfig = {
   messagingSenderId: "1009245252263",
   appId: "1:1009245252263:web:637bfe528eddfc0dc18982"
 };
+
+  const app = initializeApp(firebaseConfig)
+  const db = getFirestore(app)
+  const filmCollection = collection(db, "film")
