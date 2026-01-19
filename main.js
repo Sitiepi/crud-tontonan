@@ -28,3 +28,7 @@ const firebaseConfig = {
   //fungsi untuk menampilkan daftar film dan drama
   export async function daftarFilm() {
   }
+  
+  //fungsi untuk menambah film atau drama baru
+  export async function tambahFilm() {
+  }
