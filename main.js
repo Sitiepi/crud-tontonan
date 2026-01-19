@@ -31,4 +31,18 @@ const firebaseConfig = {
   
   //fungsi untuk menambah film atau drama baru
   export async function tambahFilm() {
+    // ambil nilai dari form
+  const judul = document.getElementById('judul').value
+  const sinopsis = document.getElementById('sinopsis').value
+  const aktor = document.getElementById('aktor').value
+
+  // tambahkan data ke firestore
+  await addDoc(filmCollection, {
+    judul: judul,
+    sinopsis: sinopsis,
+    aktor: aktor
+  })
+
+  // alihkan ke halaman daftar film
+  window.location.href = 'daftar.html'
   }
