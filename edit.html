@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ubah Data Film</title>
+  
+  
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <div class="container">
+    <h1>Form ubah Film</h1>
+    <form id="formUbah">
+      <label> Judul</label>
+      <input type="text" id="judul" />
+      
+      <label> Sinopsis</label>
+      <input type="text" id="sinopsis" />
+      
+      <label>Aktor</label>
+    <input type="text" id="aktor"/>
+      <button id="tombol" type="submit">simpan</button>
+      <a href="daftar.html">Daftar Film</a>
+    </form>
+  </div>
+  
+  <script type="module">
+    import { ambilDataFilm, ubahDataFilm } from './main.js'
+    
+    //mengambil id dari url
+    const urlParams = new URLSearchParams(window.location.search)
+    const idFilm = urlParams.get('id')
+    console.log(idFilm)
+    //mengisi form dengan data siswa yang diambil dari firebase 
+    
+    const film = await ambilDataFilm(idFilm)
+    console.log(film)
+    
+    document.getElementById('judul').value = film.judul
+    document.getElementById('sinopsis').value = film.sinopsis
+    document.getElementById('aktor').value = film.aktor
+    
+    const formUbah = document.getElementById('formUbah')
+    
+    formUbah.addEventListener('submit', function(e) {
+      e.preventDefault()
+      
+      const judul = document.getElementById('judul').value
+      const sinopsis = document.getElementById('sinopsis').value
+      const aktor = document.getElementById('aktor').value
+      
+      ubahDataFilm(idFilm,judul,sinopsis,aktor)
+      
+    })
+  </script>
+  
+</body>
+
+</html>

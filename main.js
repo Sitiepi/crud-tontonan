@@ -109,3 +109,41 @@ const firebaseConfig = {
   window.location.href = 'daftar.html'
   }
   
+export async function hapusfilm(id) {
+if (!confirm("yakin ingin menghapus data ini?")) return
+  
+  // menghapus dokuemen film berdasarkan id
+  await deleteDoc(doc(db,"film",id))
+  
+  //refresh data film
+  await daftarFilm()
+
+}
+
+//fungsi untuk menampilkan data siswa berdasarkan id
+export async function ambilDataFilm(id) {
+  const docRef = doc(db, "film", id)
+  const docSnap = await getDoc(docRef)
+  
+  return await docSnap.data()
+}
+
+
+
+
+
+//fiungsi untuk mengubah data siswa
+export async function ubahDataFilm(id, judul, sinopsis, aktor) {
+  await updateDoc(doc(db, "film", id), {
+    judul: judul,
+    sinopsis: sinopsis,
+    aktor: aktor
+  })
+  
+  //alihlkan ke halaman daftar siswa
+  window.location.href = 'daftar.html'
+  // Tab to edit
+}
+
+
+  
